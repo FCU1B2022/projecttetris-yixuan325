@@ -450,19 +450,20 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
     return;
 }
 
-void start()
-{
-    system("cls");
-    
-}
-
 int go()
 {
-    int num;
     system("cls");
-    printf("\t\t\033[47;34m Welcome to play Tetris \033[m\n\n");
-    printf("\t\t\033[47;34m Are you ready to go ? \033[m\n\n");
-    printf("\t\t\033[47;34m Please press 1 \033[m\n");
+    int num;
+
+    printf(" .___________.   _______.   ___________.  .______        __         _______.\n");
+    printf(" |           |  |   ____|  |           |  |   _  \\      |  |       /       |\n");
+    printf(" `---|  |----`  | | __     `---|  |----`  | | _)  |     |  |      |   (----`\n");
+    printf("     |  |       |   __|        |  |       |      /      |  |       \\   \\\n");
+    printf("     |  |       |  |____       |  |       |  |\  \--.     |  |   .----)   |\n");
+    printf("     |__|       |_______|      |__|       | _| `.__|    |__|   |_______ /\n\n");
+    printf("\t\t\t\033[47;34m Welcome to play Tetris \033[m\n\n");
+    printf("\t\t\t\033[47;34m Are you ready to go ? \033[m\n\n");
+    printf("\t\t\t   \033[47;34m Please press 1 \033[m\n");
     scanf_s("%d", &num);
     if (num == 1)
         return 1;
