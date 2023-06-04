@@ -442,7 +442,12 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
             if (!move(canvas, state->x, state->y, state->rotate, state->x, state->y, state->rotate, state->queue[0]))
             {
                 system("cls");
-                printf("\033[%d;%dH\x1b[41m GAME OVER \x1b[0m\033[%d;%dH", CANVAS_HEIGHT - 3, CANVAS_WIDTH * 2 + 5, CANVAS_HEIGHT + 5, 0);
+                printf("\033[41;37m     GGGG       AAA     MM    MM   EEEEEEE       OOOOO    VV     VV   EEEEEEE   RRRRRR \033[0m\n");
+                printf("\033[41;37m    GG  GG     AAAAA    MMM  MMM   EE           OO   OO   VV     VV   EE        RR   RR\033[0m\n");
+                printf("\033[41;37m    GG        AA   AA   MM MM MM   EEEEE        OO   OO    VV   VV    EEEEE     RRRRRR \033[0m\n");
+                printf("\033[41;37m    GG   GG   AAAAAAA   MM    MM   EE           OO   OO     VV VV     EE        RR  RR \033[0m\n");
+                printf("\033[41;37m    GGGGGG    AA   AA   MM    MM   EEEEEEE       OOOO0       VVV      EEEEEEE   RR   RR\033[0m\n");
+                
                 exit(0);  //µ²§ôµe­±
             }
         }
@@ -455,12 +460,12 @@ int go()
     system("cls");
     int num;
 
-    printf(" .___________.   _______.   ___________.  .______        __         _______.\n");
-    printf(" |           |  |   ____|  |           |  |   _  \\      |  |       /       |\n");
-    printf(" `---|  |----`  | | __     `---|  |----`  | | _)  |     |  |      |   (----`\n");
-    printf("     |  |       |   __|        |  |       |      /      |  |       \\   \\\n");
-    printf("     |  |       |  |____       |  |       |  |\  \--.     |  |   .----)   |\n");
-    printf("     |__|       |_______|      |__|       | _| `.__|    |__|   |_______ /\n\n");
+    printf("\033[34m .___________.   _______.   ___________.  .______        __         _______.\033[0m\n");
+    printf("\033[34m |           |  |   ____|  |           |  |   _  \\      |  |       /       |\033[0m\n");
+    printf("\033[34m `---|  |----`  | | __     `---|  |----`  | | _)  |     |  |      |   (----`\033[0m\n");
+    printf("\033[34m     |  |       |   __|        |  |       |      /      |  |       \\   \\\033[0m\n");
+    printf("\033[34m     |  |       |  |____       |  |       |  |\  \--.     |  |   .----)   |\033[0m\n");
+    printf("\033[34m     |__|       |_______|      |__|       | _| `.__|    |__|   |_______ /\033[0m\n\n");
     printf("\t\t\t\033[47;34m Welcome to play Tetris \033[m\n\n");
     printf("\t\t\t\033[47;34m Are you ready to go ? \033[m\n\n");
     printf("\t\t\t   \033[47;34m Please press 1 \033[m\n");
@@ -471,7 +476,7 @@ int go()
     {
         system("cls");
         printf("\t\t\033[44;33m Don't want to play ? \033[m\n\n");
-        printf("\t\t\033[44;33m OK BYE.  QAQ \033[m\n");
+        printf("\t\t  \033[44;33m OK BYE.  QAQ \033[m\n");
         return -1;
     }
 }
