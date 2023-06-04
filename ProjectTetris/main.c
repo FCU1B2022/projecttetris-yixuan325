@@ -419,7 +419,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         state->fallTime += FALL_DELAY * CANVAS_HEIGHT;
     }
 
-    state->fallTime += RENDER_DELAY;
+    state->fallTime += RENDER_DELAY;  //可改落下時間
 
     while (state->fallTime >= FALL_DELAY) {
         state->fallTime -= FALL_DELAY;
@@ -441,12 +441,38 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
 
             if (!move(canvas, state->x, state->y, state->rotate, state->x, state->y, state->rotate, state->queue[0]))
             {
+                system("cls");
                 printf("\033[%d;%dH\x1b[41m GAME OVER \x1b[0m\033[%d;%dH", CANVAS_HEIGHT - 3, CANVAS_WIDTH * 2 + 5, CANVAS_HEIGHT + 5, 0);
-                exit(0);
+                exit(0);  //結束畫面
             }
         }
     }
     return;
+}
+
+void start()
+{
+    system("cls");
+    
+}
+
+int go()
+{
+    int num;
+    system("cls");
+    printf("\t\t\033[47;34m Welcome to play Tetris \033[m\n\n");
+    printf("\t\t\033[47;34m Are you ready to go ? \033[m\n\n");
+    printf("\t\t\033[47;34m Please press 1 \033[m\n");
+    scanf_s("%d", &num);
+    if (num == 1)
+        return 1;
+    else
+    {
+        system("cls");
+        printf("\t\t\033[44;33m Don't want to play ? \033[m\n\n");
+        printf("\t\t\033[44;33m OK BYE.  QAQ \033[m\n");
+        return -1;
+    }
 }
 
 int main()
@@ -475,15 +501,18 @@ int main()
     }
 
     system("cls");
-    // printf("\e[?25l"); // hide cursor
+    // printf("\e[?25l"); // hide cursor  //清除游標
 
-    move(canvas, state.x, state.y, state.rotate, state.x, state.y, state.rotate, state.queue[0]);
-
-    while (1)
+    if (go() == 1)
     {
-        logic(canvas, &state);
-        printCanvas(canvas, &state);
-        Sleep(100);
-    }
+        system("cls");
+        move(canvas, state.x, state.y, state.rotate, state.x, state.y, state.rotate, state.queue[0]);
 
+        while (1)
+        {
+            logic(canvas, &state);
+            printCanvas(canvas, &state);
+            Sleep(100);
+        }
+    }
 }
