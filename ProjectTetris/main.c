@@ -393,7 +393,7 @@ int clearLine(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH]) {
 
 void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
 {
-    printf("\033[20;30H\033[47;35mYour score is %d\033[m", state->score);
+    printf("\033[20;30H\033[47;35m Your score is %d \033[m", state->score);
     if (ROTATE_FUNC()) {
         int newRotate = (state->rotate + 1) % 4;
         if (move(canvas, state->x, state->y, state->rotate, state->x, state->y, newRotate, state->queue[0]))
@@ -449,7 +449,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
                 printf("\033[41;37m    GG   GG   AAAAAAA   MM    MM   EE           OO   OO     VV VV     EE        RR  RR \033[0m\n");
                 printf("\033[41;37m    GGGGGG    AA   AA   MM    MM   EEEEEEE       OOOO0       VVV      EEEEEEE   RR   RR\033[0m\n\n");
                 
-                printf("\t\t\033[47;35mYour score is %d\033[m", state->score);
+                printf("\t\t\033[47;35m Your score is %d \033[m", state->score);
                 exit(0);  //µ²§ôµe­±
             }
         }
