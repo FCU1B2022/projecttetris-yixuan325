@@ -423,7 +423,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         Sleep(20);
     }
     else if (STOP_FUNC()) {
-        Sleep(2000);
+        Sleep(3000);
         state->score--;
         final_score = state->score;
         if (final_score < 0)
