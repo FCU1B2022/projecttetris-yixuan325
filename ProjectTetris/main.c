@@ -387,7 +387,6 @@ int clearLine(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH]) {
         }
     }
 
-
     return linesCleared;
 }
 
@@ -458,6 +457,8 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
     return;
 }
 
+
+
 int go()
 {
     system("cls");
@@ -484,8 +485,19 @@ int go()
     }
 }
 
+void hideCursor() 
+{
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(consoleHandle, &cursorInfo);
+    cursorInfo.dwSize = 1;
+    cursorInfo.bVisible = FALSE;
+    SetConsoleCursorInfo(consoleHandle, &cursorInfo);
+}
+
 int main()
 {
+    hideCursor();
     srand(time(NULL));
     State state = {
         .x = CANVAS_WIDTH / 2,
