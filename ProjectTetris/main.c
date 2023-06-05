@@ -425,13 +425,13 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
 
     while (state->fallTime >= FALL_DELAY) {
         state->fallTime -= FALL_DELAY;
-
+        int final_score;
         if (move(canvas, state->x, state->y, state->rotate, state->x, state->y + 1, state->rotate, state->queue[0])) {
             state->y++;
         }
         else {
             state->score += clearLine(canvas);
-
+            final_score = state->score;
             state->x = CANVAS_WIDTH / 2;
             state->y = 0;
             state->rotate = 0;
@@ -450,7 +450,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
                 printf("\033[41;37m    GG   GG   AAAAAAA   MM    MM   EE           OO   OO     VV VV     EE        RR  RR \033[0m\n");
                 printf("\033[41;37m    GGGGGG    AA   AA   MM    MM   EEEEEEE       OOOO0       VVV      EEEEEEE   RR   RR\033[0m\n\n");
                 
-                printf("\t\t\033[47;35m Your score is %d \033[m", state->score);
+                printf("\t\t\033[47;35m Your score is %d \033[m", final_score);
                 exit(0);  //µ²§ôµe­±
             }
         }
