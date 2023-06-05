@@ -323,11 +323,11 @@ void printCanvas(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
 {
     printf("\033[0;0H\n");
     for (int i = 0; i < CANVAS_HEIGHT; i++) {
-        printf("|");
+        printf("\033[36m|\033[0m");
         for (int j = 0; j < CANVAS_WIDTH; j++) {
             printf("\033[%dm\u3000", canvas[i][j].color);
         }
-        printf("\033[0m|\n");
+        printf("\033[36m|\033[0m\n");
     }
 
     Shape shapeData = shapes[state->queue[1]];
@@ -393,6 +393,7 @@ int clearLine(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH]) {
 
 void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
 {
+    printf("\033[20;30H\033[47;35mYour score is %d\033[m", state->score);
     if (ROTATE_FUNC()) {
         int newRotate = (state->rotate + 1) % 4;
         if (move(canvas, state->x, state->y, state->rotate, state->x, state->y, newRotate, state->queue[0]))
@@ -429,6 +430,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         }
         else {
             state->score += clearLine(canvas);
+            //printf("\n\n\t\t\t\033[47;35mYour score is %d\033[m", state->score);
 
             state->x = CANVAS_WIDTH / 2;
             state->y = 0;
@@ -446,8 +448,9 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
                 printf("\033[41;37m    GG  GG     AAAAA    MMM  MMM   EE           OO   OO   VV     VV   EE        RR   RR\033[0m\n");
                 printf("\033[41;37m    GG        AA   AA   MM MM MM   EEEEE        OO   OO    VV   VV    EEEEE     RRRRRR \033[0m\n");
                 printf("\033[41;37m    GG   GG   AAAAAAA   MM    MM   EE           OO   OO     VV VV     EE        RR  RR \033[0m\n");
-                printf("\033[41;37m    GGGGGG    AA   AA   MM    MM   EEEEEEE       OOOO0       VVV      EEEEEEE   RR   RR\033[0m\n");
+                printf("\033[41;37m    GGGGGG    AA   AA   MM    MM   EEEEEEE       OOOO0       VVV      EEEEEEE   RR   RR\033[0m\n\n");
                 
+                printf("\t\t\033[47;35mYour score is %d\033[m", state->score);
                 exit(0);  //結束畫面
             }
         }
@@ -507,7 +510,6 @@ int main()
     }
 
     system("cls");
-    // printf("\e[?25l"); // hide cursor  //清除游標
 
     if (go() == 1)
     {
