@@ -430,7 +430,6 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         }
         else {
             state->score += clearLine(canvas);
-            //printf("\n\n\t\t\t\033[47;35mYour score is %d\033[m", state->score);
 
             state->x = CANVAS_WIDTH / 2;
             state->y = 0;
