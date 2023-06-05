@@ -9,6 +9,7 @@
 #define ROTATE_KEY 0x26   // The key to rotate, default = 0x26 (up arrow)
 #define DOWN_KEY 0x28     // The key to move down, default = 0x28 (down arrow)
 #define FALL_KEY 0x20     // The key to fall, default = 0x20 (spacebar)
+#define STOP_KEY 0xA4     //左Alt
 
 #define FALL_DELAY 500    // The delay between each fall, default = 500
 #define RENDER_DELAY 100  // The delay between each frame, default = 100
@@ -18,6 +19,7 @@
 #define ROTATE_FUNC() GetAsyncKeyState(ROTATE_KEY) & 0x8000
 #define DOWN_FUNC() GetAsyncKeyState(DOWN_KEY) & 0x8000
 #define FALL_FUNC() GetAsyncKeyState(FALL_KEY) & 0x8000
+#define STOP_FUNC() GetAsyncKeyState(STOP_KEY) & 0x8000
 
 #define CANVAS_WIDTH 10
 #define CANVAS_HEIGHT 20
@@ -392,6 +394,7 @@ int clearLine(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH]) {
 
 void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
 {
+    int final_score = state->score;
     printf("\033[20;30H\033[47;35m Your score is %d \033[m", state->score);
     if (ROTATE_FUNC()) {
         int newRotate = (state->rotate + 1) % 4;
@@ -419,12 +422,29 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         state->fallTime += FALL_DELAY * CANVAS_HEIGHT;
         Sleep(20);
     }
+    else if (STOP_FUNC()) {
+        Sleep(2000);
+        state->score--;
+        final_score = state->score;
+        if (final_score < 0)
+        {
+            system("cls");
+            printf("\033[41;37m     GGGG       AAA     MM    MM   EEEEEEE       OOOOO    VV     VV   EEEEEEE   RRRRRR \033[0m\n");
+            printf("\033[41;37m    GG  GG     AAAAA    MMM  MMM   EE           OO   OO   VV     VV   EE        RR   RR\033[0m\n");
+            printf("\033[41;37m    GG        AA   AA   MM MM MM   EEEEE        OO   OO    VV   VV    EEEEE     RRRRRR \033[0m\n");
+            printf("\033[41;37m    GG   GG   AAAAAAA   MM    MM   EE           OO   OO     VV VV     EE        RR  RR \033[0m\n");
+            printf("\033[41;37m    GGGGGG    AA   AA   MM    MM   EEEEEEE       OOOO0       VVV      EEEEEEE   RR   RR\033[0m\n\n");
+
+            printf("\t\t\033[47;35m Your score is 0 \033[m");
+            exit(0);  //結束畫面
+        }
+    }
 
     state->fallTime += RENDER_DELAY;  //可改落下時間
 
     while (state->fallTime >= FALL_DELAY) {
         state->fallTime -= FALL_DELAY;
-        int final_score;
+        
         if (move(canvas, state->x, state->y, state->rotate, state->x, state->y + 1, state->rotate, state->queue[0])) {
             state->y++;
         }
