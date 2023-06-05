@@ -418,6 +418,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
     }
     else if (FALL_FUNC()) {
         state->fallTime += FALL_DELAY * CANVAS_HEIGHT;
+        Sleep(20);
     }
 
     state->fallTime += RENDER_DELAY;  //可改落下時間
