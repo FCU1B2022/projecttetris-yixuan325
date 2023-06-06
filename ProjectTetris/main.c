@@ -423,7 +423,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         Sleep(20);
     }
     else if (STOP_FUNC()) {
-        Sleep(3000);
+        Sleep(2500);
         state->score--;
         final_score = state->score;
         if (final_score < 0)
@@ -444,7 +444,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
 
     while (state->fallTime >= FALL_DELAY) {
         state->fallTime -= FALL_DELAY;
-        
+
         if (move(canvas, state->x, state->y, state->rotate, state->x, state->y + 1, state->rotate, state->queue[0])) {
             state->y++;
         }
@@ -468,7 +468,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
                 printf("\033[41;37m    GG        AA   AA   MM MM MM   EEEEE        OO   OO    VV   VV    EEEEE     RRRRRR \033[0m\n");
                 printf("\033[41;37m    GG   GG   AAAAAAA   MM    MM   EE           OO   OO     VV VV     EE        RR  RR \033[0m\n");
                 printf("\033[41;37m    GGGGGG    AA   AA   MM    MM   EEEEEEE       OOOO0       VVV      EEEEEEE   RR   RR\033[0m\n\n");
-                
+
                 printf("\t\t\033[47;35m Your score is %d \033[m", final_score);
                 exit(0);  //µ²§ôµe­±
             }
@@ -505,7 +505,7 @@ int go()
     }
 }
 
-void hideCursor() 
+void hideCursor()
 {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo;
