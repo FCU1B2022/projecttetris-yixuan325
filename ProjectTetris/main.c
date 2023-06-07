@@ -444,7 +444,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         Sleep(20);
     }
     else if (STOP_FUNC()) {
-        Sleep(2500);
+        Sleep(2000);
         state->score--;
         final_score = state->score;
         if (final_score < 0)
@@ -484,7 +484,6 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
         state->x = CANVAS_WIDTH / 2;
         state->y = 0;
         state->rotate = 0;
-        state->score = 0;
         state->hold = false;
         if (!move(canvas, state->x, state->y, state->rotate, state->x, state->y, state->rotate, state->queue[0])) {
             system("cls");
@@ -498,6 +497,7 @@ void logic(Block canvas[CANVAS_HEIGHT][CANVAS_WIDTH], State* state)
             exit(0);
         }
         state->fallTime = FALL_DELAY;
+        Sleep(20);
     }
 
 
